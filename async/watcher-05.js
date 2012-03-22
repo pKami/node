@@ -23,7 +23,8 @@ Watcher.prototype.watch = function() {
 
 Watcher.prototype.start = function() {
   var watcher = this;
-  fs.watchFile(watchDir, function() {
+  fs.watchFile(watchDir, function() { // watchFile – nodejs function
+    console.warn('-- something has changed on:', watchDir);
     watcher.watch();
   });
 };
@@ -33,6 +34,7 @@ var watcher = new Watcher(watchDir, processedDir);
 watcher.on('process', function process(file) {
   var watchFile = this.watchDir + '/' + file;
   var processedFile = this.processedDir + '/' + file.toLowerCase();
+  console.warn('renamed:', file, ' =>', processedFile);
   fs.rename(watchFile, processedFile, function(err) {
     if (err) throw err;
   });
