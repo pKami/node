@@ -21,14 +21,18 @@ Watcher.prototype.watch = function() {
   });
 };
 
+// main
+
 Watcher.prototype.start = function() {
   var watcher = this;
 
-  fs.watchFile(watchDir, function() { // watchFile – nodejs function
+  fs.watchFile(this.watchDir, function() { // watchFile – nodejs function
     console.warn('-- something has changed on:', watchDir);
     watcher.watch();
   });
 };
+
+// initialize
 
 var watcher = new Watcher(watchDir, processedDir);
 
