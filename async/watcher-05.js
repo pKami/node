@@ -38,7 +38,8 @@ var watcher = new Watcher(watchDir, processedDir);
 
 watcher.on('process', function process(file) {
   var watchFile = this.watchDir + '/' + file;
-  var processedFile = this.processedDir + '/' + file.toLowerCase(); // TODO: robust rename
+  // var processedFile = this.processedDir + '/' + file.toLowerCase(); // TODO: robust rename
+  var processedFile = this.processedDir + '/' + file.toLowerCase().replace(/[ ()]+/g, "-").replace(/-+/g, "-");
 
   console.warn('renamed:', file, ' =>', processedFile);
 
