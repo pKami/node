@@ -13,6 +13,8 @@ http.Server(app)
 console.log('server started on port 3000');
 
 function echoMiddleware(req, res, next) {
-  console.dir(res);
+  console.dir(req.url.substr(1));
   next();
 };
+
+// TODO: użyć serve-js.js
